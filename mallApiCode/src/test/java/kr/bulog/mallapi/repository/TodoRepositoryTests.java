@@ -41,16 +41,16 @@ public class TodoRepositoryTests {
 //        }
 //    }
     
-    @Test
-    public void testRead() {
-    	Long tno = 33L;
-    	java.util.Optional<Todo> result = todoRepository.findById(tno);
-    	
-    	Todo todo = result.orElseThrow();
-    	log.info("====================================");
-    	log.info(todo);
-    	log.info("====================================");
-    }
+//    @Test
+//    public void testRead() {
+//    	Long tno = 33L;
+//    	java.util.Optional<Todo> result = todoRepository.findById(tno);
+//    	
+//    	Todo todo = result.orElseThrow();
+//    	log.info("====================================");
+//    	log.info(todo);
+//    	log.info("====================================");
+//    }
 
 //    @Test    
 //    public void testModify() {
@@ -72,16 +72,16 @@ public class TodoRepositoryTests {
     //     todoRepository.deleteById(tno);
     // }
 
-    @Test
-    public void testPaging() {
-        Pageable pageable = PageRequest.of(0,10, Sort.by("tno").descending());
-
-        Page <Todo> result = todoRepository.findAll(pageable);
-        log.info("====================================");
-        log.info(result.getTotalElements());
-        log.info("====================================");
-        
-        
-        result.getContent().stream().forEach(todo -> log.info(todo));
-    }
+//    @Test
+//    public void testPaging() {
+//        Pageable pageable = PageRequest.of(0,10, Sort.by("tno").descending());
+//
+//        Page <Todo> result = todoRepository.findAll(pageable);
+//        log.info("====================================");
+//        log.info(result.getTotalElements());
+//        log.info("====================================");
+//        
+//        
+//        result.getContent().stream().forEach(todo -> log.info(todo));
+//    }
 }

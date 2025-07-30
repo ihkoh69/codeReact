@@ -1,6 +1,8 @@
 package kr.bulog.mallapi.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +26,16 @@ public class PageResponseDTO<E> {
 		int start = end -9;
 		
 		int last = (int)(Math.ceil((totalCount/(double)pageRequestDTO.getSize())));
+		
+		end = end > last ? last : end;
+		
+		this.prev = start > 1;
+		
+		this.next = totalCount > end * pageRequestDTO.getSize();
+		
+		this.pageNumList = IntStream.rangeClosed(start,  end).boxed().collect(Collectors.toList());
+		
+		
 		
 		if(prev) {
 			this.prevPage = start -1;
