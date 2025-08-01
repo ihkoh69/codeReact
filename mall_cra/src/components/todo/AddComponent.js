@@ -72,7 +72,7 @@ const AddComponent = () => {
             <div className='w-1/5 p-6 text-right font-bold'>DueDate</div>
             <input className='w-4/5 p-6 border-2 border-gray-300 rounded' 
                     name='dueDate'
-                    type='text'
+                    type={'date'}
                     value={todo.dueDate}
                     onChange={handleChangeTodo}
 

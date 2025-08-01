@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
 import ModifyComponent from "../../components/todo/ModifyComponent"
 
-const ModifyPage = ({tno}) => {
+const ModifyPage = () => {
 
+    const {tno} = useParams()
     const navigate = useNavigate()
 
     const moveToRead = () => {

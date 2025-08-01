@@ -48,7 +48,9 @@ function ReadCompoent({tno}) {
             </button>
             <button type="button" 
                     className='rounded p-4 m-2 text-xl w-32 text-white bg-blue-500'
-                    onClick={()=> moveToModify(tno)}
+                    onClick={()=> {
+                        console.log("moveToModify tno:", tno);
+                        moveToModify(tno)}}
             >
                 Modify
             </button>

@@ -4,6 +4,8 @@ export const API_SERVER_HOST = "http://localhost:8081";
 const prefix = `${API_SERVER_HOST}/api/todo`;
 
 export const getOne = async (tno) => {
+
+    console.log("요청 tno:", tno);
     const res = await axios.get(`${prefix}/${tno}`);
 
     return res.data;
