@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -60,6 +61,12 @@ public class CustomFileUtil {
 			
 			try {
 				Files.copy(multipartFile.getInputStream(),  savePath);
+				String contentType = multipartFile.getContentType();
+				if(contentType != null && contentType.startsWith("image")) {
+					Path thumbnailPath = Paths.get(uploadPath, "s_"+savedName);
+					
+					Thumbnails.of(savePath.toFile()).size(200,200).toFile(thumbnailPath.toFile());
+				}
 				uploadNames.add(savedName);
 			} catch(IOException e) {
 				throw new RuntimeException(e.getMessage());
@@ -85,6 +92,26 @@ public class CustomFileUtil {
 		}
 		
 		return ResponseEntity.ok().headers(headers).body(resource);
+	}
+	
+	public void deleteFile(List<String> fileNames) {
+		if(fileNames == null || fileNames.size() == 0) {
+			return;
+		}
+		
+		fileNames.forEach(fileName -> {
+			//섬네일이 있는지 확인하고 삭제
+			String thumbnailFileName = "s_"+fileName;
+			Path thumbnailPath = Paths.get(uploadPath, thumbnailFileName);
+			Path filePath = Paths.get(uploadPath, fileName);
+			
+			try {
+				Files.deleteIfExists(thumbnailPath);
+				Files.deleteIfExists(filePath);
+			} catch (IOException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		});
 	}
 	
 }
