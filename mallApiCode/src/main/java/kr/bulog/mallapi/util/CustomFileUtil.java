@@ -94,7 +94,7 @@ public class CustomFileUtil {
 		return ResponseEntity.ok().headers(headers).body(resource);
 	}
 	
-	public void deleteFile(List<String> fileNames) {
+	public void deleteFiles(List<String> fileNames) {
 		if(fileNames == null || fileNames.size() == 0) {
 			return;
 		}

@@ -26,7 +26,7 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long pno;
+	private Long pno;
 	
 	private String pname;
 	private int price;

@@ -37,6 +37,12 @@ public class CustomErrorController implements ErrorController {
 		else if(status == HttpStatus.UNSUPPORTED_MEDIA_TYPE) {
 			msg = "지원하지 않는 미디어 형식입니다. ";
 		}
+		else if (status == HttpStatus.UNAUTHORIZED) {
+		    msg = "인증되지 않았습니다.";
+		} 
+		else if (status == HttpStatus.FORBIDDEN) {
+		    msg = "접근 권한이 없습니다.";
+		}
 		else {
 			msg = "서버 내부 오류가 발생했습니다.";
 		}
