@@ -10,8 +10,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import kr.bulog.mallapi.util.CustomJWTException;
+
 @RestControllerAdvice
 public class CustomControllerAdvice {
+	
+	protected ResponseEntity<?> handleJWTException(CustomJWTException e) {
+		String msg = e.getMessage();
+		
+		return ResponseEntity.ok().body(Map.of("error", msg));
+	}
 	
 //	@ExceptionHandler(NoSuchElementException.class)
 //	protected ResponseEntity<?> notExist(NoSuchElementException e) {
