@@ -15,34 +15,50 @@ const TodoIndex = lazy(() => import("../pages/todo/IndexPage"));
 const ProductsIndex = lazy(() => import("../pages/products/IndexPage"));
 
 const root = createBrowserRouter([
-    {
-        path: "",
-        element: <Suspense fallback={<LoadingSpinner />}><Main/></Suspense>
-    },
-    {
-        path: "about",
-        element: <Suspense fallback={<LoadingSpinner />}><About/></Suspense>
-    },
-    {
-        path: "todo",
-        element: <Suspense fallback={<LoadingSpinner />}><TodoIndex /></Suspense>,
-        children: todoRouter()
-        // children: [
-        //     {
-        //         path: 'list',
-        //         element: <Suspense fallback={<LoadingSpinner />}><TodoList /></Suspense>
-        //     }
-        // ]
-    },
-    {
-        path: "products",
-        element: <Suspense fallback = {<LoadingSpinner />}><ProductsIndex /></Suspense>,
-        children: productsRouter()
-    },
-    {
-        path: "member",
-        children: memberRouter()
-    }
-])
+  {
+    path: "",
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <Main />
+      </Suspense>
+    ),
+  },
+  {
+    path: "about",
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <About />
+      </Suspense>
+    ),
+  },
+  {
+    path: "todo",
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <TodoIndex />
+      </Suspense>
+    ),
+    children: todoRouter(),
+    // children: [
+    //     {
+    //         path: 'list',
+    //         element: <Suspense fallback={<LoadingSpinner />}><TodoList /></Suspense>
+    //     }
+    // ]
+  },
+  {
+    path: "products",
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ProductsIndex />
+      </Suspense>
+    ),
+    children: productsRouter(),
+  },
+  {
+    path: "member",
+    children: memberRouter(),
+  },
+]);
 
 export default root;
